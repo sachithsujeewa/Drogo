@@ -1,0 +1,68 @@
+﻿@page
+@model Drogo.Pages.Bicycles.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Bicycle[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bicycle[0].Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bicycle[0].IsInUse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bicycle[0].StartedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bicycle[0].IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Bicycle) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @{
+                    if (item.Image != null)
+                    {
+                        var base64 = Convert.ToBase64String(item.Image);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        <img src="@imgSrc" style="width: 200px;"/>
+                    }
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsInUse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

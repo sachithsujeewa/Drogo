@@ -1,0 +1,59 @@
+﻿@page
+@model Drogo.Pages.Bicycles.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Bicycle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Bicycle.Name" class="control-label"></label>
+                <input asp-for="Bicycle.Name" class="form-control" />
+                <span asp-validation-for="Bicycle.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bicycle.HourlyRate" class="control-label"></label>
+                <input asp-for="Bicycle.HourlyRate" class="form-control" />
+                <span asp-validation-for="Bicycle.HourlyRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" type="file"  class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Bicycle.IsInUse" /> @Html.DisplayNameFor(model => model.Bicycle.IsInUse)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bicycle.StartedAt" class="control-label"></label>
+                <input asp-for="Bicycle.StartedAt" class="form-control" />
+                <span asp-validation-for="Bicycle.StartedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Bicycle.IsActive" /> @Html.DisplayNameFor(model => model.Bicycle.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
